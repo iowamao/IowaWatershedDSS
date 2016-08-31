@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Iowa Watershed DSS - Culverts</title>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="assets/css/bootstrap-switch.css">
+	 <link rel="stylesheet" href="assets/css/app.css">
+<!-- Bootstrap CSS -->
+
+<!-- Jquery UI CSS -->
+<link rel="stylesheet" href="assets/js/utility/jquery-slider/iThing.css">
+<!-- Jquery UI CSS -->
+
+<!-- Leaflet CSS -->
+ <link rel="stylesheet" href="assets/css/leaflet.css" />
+<!--<link rel="stylesheet" href="assets/css/leaflet_google.css" />
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />-->
+  <link rel="stylesheet" href="assets/css/bootstrap_elements.css" />  
+  <link rel="stylesheet" href="assets/css/iowa_culvert_birdeye_viewer.css" />  
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+<!-- Leaflet CSS -->
+
+<!-- Font CSS -->
+<link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'> 
+<!-- Font CSS -->
+
+<!-- Route CSS -->
+<link href='assets/js/dss_app/iowa_culvert/Route/leaflet-routing-machine.css' rel='stylesheet' type='text/css'> 
+<link rel="stylesheet" href="assets/js/dss_app/iowa_culvert/Geocoder/Control_Geocoder.css" />
+<!-- Route CSS -->
+
+<!-- d3 ParaCord CSS -->
+  <link rel="stylesheet" href="assets/css/paracor.css">
+<!-- ParaCord CSS -->
+
+<!-- leaflet draw CSS -->
+  <link rel="stylesheet" href="assets/css/leaflet_extension/leaflet_draw/leaflet.draw.css">
+  
+<!-- leaflet draw CSS -->
+
+<!-- JQuery JS -->
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- JQuery JS -->
+
+
+
+
+
+
+
+<!-- Leaflet JS -->
+<script src="assets/js/Leaflet_min.js"></script>
+<!--<script src="assets/js/Proj4Leaflet_min.js"></script>-->
+<!--<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>-->
+<!-- Leaflet JS -->
+
+<!-- Central DSS Control -->
+<script src="assets/js/dss_core/leaflet_core_function.js"></script>
+<!-- Central DSS Control -->
+
+<!-- Leaflet ext JS -->
+<script src="assets/js/leaflet_extension/leaflet_google.js"> </script>
+
+<!--
+
+<script src="http://openweathermap.org/js/leaflet-layer.js"></script>
+<script src="assets/js/dss_app/iowa_culvert/weather/sunscal.js"></script>
+-->
+<link href='assets/js/dss_app/iowa_culvert/weather/leaflet-openweathermap.css' rel='stylesheet' type='text/css'> 
+<script src="assets/js/dss_app/iowa_culvert/weather/leaflet-openweathermap.js"></script>
+
+
+
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>    
+<script src="assets/js/leaflet_esri.js"></script>
+<!-- Leaflet ext JS -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+<!--<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>-->
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script> 
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script> 
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="assets/js/leaflet_extension/d3.parcoords.js"> </script>
+
+<!-- Route js -->
+<script src="assets/js/dss_app/iowa_culvert/Geocoder/Geocoder_control.js"></script>
+ <script type="text/javascript" src="assets/js/dss_app/iowa_culvert/Route/leaflet-routing-machine.min.js"></script>  
+<!-- Route js -->
+
+<!--
+<script src="assets/js/utility/plotting.js"></script>
+<script src="assets/js/utility/jquery-slider/jQAllRangeSliders-min.js"></script> 
+<script src="assets/js/utility/jquery-slider/jQDateRangeSlider-withRuler-min.js"></script> 
+<script src="assets/js/utility/spin.min.js"></script> 
+<script src="assets/js/utility/simple_statics.js"></script>
+-->
+  <style>
+    .navbar-inverse { background-color: #0d0d0d; }
+  </style>  
+  <link rel="stylesheet" href="assets/css/main_page.css" />
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" id="nav_container" role="navigation">
+      <div class="navbar-header" id="nav_bar">
+        <div class="navbar-icon-container">
+          <a  class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+          <a  class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+        </div>             
+        <a class="navbar-brand"> <img src="data/dss/IDOT/img/IDOT.png" height="33" width="153" > Culverts <!--IClear Creek WMA--> </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <!--form class="navbar-form navbar-right" role="search">
+          <div class="form-group has-feedback navbar-right">
+              <input id="searchbox" type="text" placeholder="Search" class="form-control">
+              <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+          </div> 
+        </form>-->
+		
+		
+        <ul class="nav navbar-nav" name="title_bar_options"> <!-- templete for title bars -->
+		
+		 <li class="dropdown" id="culvert_info_section">
+            <a   role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Culvert Info <b class="caret"></b></a>
+              <ul class="dropdown-menu planning_category" >
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_info-remove_culvert" class=""><i></i>&nbsp;&nbsp;Remove Culverts</a></li>       
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_info-search_culvert" class="sidebar-control idot_menu"><i></i>&nbsp;&nbsp;Search Culvert</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_info-filter_culvert" class="sidebar-control idot_menu"><i></i>&nbsp;&nbsp;Select Culverts</a></li>
+              </ul>
+          </li>
+		  <li class="dropdown" id="culvert_hydraulics_section">
+            <a id="toolsDrop"  role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Culvert Hydraulics <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_hydraulics-river_catchments" class="wms_trigger">&nbsp;&nbsp;River Catchments (NHD)</a></li>       
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_hydraulics-runoff_potential" class="wms_trigger">&nbsp;&nbsp;Runoff Potential</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_hydraulics-calculate_discharge" class="sidebar-control idot_menu">&nbsp;&nbsp;Estimate Discharge</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_hydraulics-estimate_culvert_size" class="sidebar-control idot_menu">&nbsp;&nbsp;Estimate Culvert Size</a></li>
+              </ul>
+          </li>
+		  <li class="dropdown" id="culvert_sedimentation_section">
+            <a id="toolsDrop"  role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Culvert Sedimentation <b class="caret"></b></a>
+              <ul class="dropdown-menu culvert_sedimentation_catagory">
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-current_status" class="">&nbsp;&nbsp;Current Situation</a></li> 
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-rusle" class="wms_trigger">&nbsp;&nbsp;Erosion Potential</a></li>			  
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-forests" class="wms_trigger">&nbsp;&nbsp;Forestry</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-sed_potential" class="sidebar-control idot_menu">&nbsp;&nbsp;Sedimentation Potential</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-sed_potential_ana" class="">&nbsp;&nbsp;Sedimentation Potential Analysis</a></li>
+			  <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="culvert_sed-site_inspection" class="sidebar-control idot_menu">&nbsp;&nbsp;Site Inspection</a></li>
+              </ul>
+          </li>
+		 <!--
+		  <li class="dropdown">
+            <a id="toolsDrop"  role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Current Status <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a  data-toggle="collapse" data-target=".navbar-collapse.in" id="current-status-list-btn" class="sidebar-control"><i></i>&nbsp;&nbsp;Active Data Layers</a></li>
+              </ul>
+          </li>-->
+
+		 
+		 </ul>
+		  <ul class="nav navbar-nav navbar-right">
+		 <li><a href="../" style="font-weight: bold;  font-weight: bold; margin: 10px 1px;  padding: 5px 15px; border-color:#29AEE3;">HOME</a></li>
+          <li><a  data-toggle="collapse" id="about-btn" style="font-weight: bold; font-weight: bold; margin: 10px 1px;  padding: 5px 15px; border-color:#29AEE3;">ABOUT</a></li>
+		  <li><a href="../support.html" data-toggle="collapse" style="font-weight: bold;  font-weight: bold; margin: 10px 1px;  padding: 5px 15px; border-color:#29AEE3;">SUPPORT</a></li>		 
+          <li><a href="../contact.html" data-toggle="collapse" style="font-weight: bold;  font-weight: bold; margin: 10px 25px 10px 1px; padding: 5px 15px; border-color:#29AEE3;">CONTACT</a></li>
+        </ul> <!--Title bar option--><!-- templete for title bars -->
+        
+		
+      </div><!--/.navbar-collapse -->
+      
+    </div><!-- Nevagation bar -->
+	
+	<div id="container">
+	
+	<div id="sidebar" style="position:relative;top:10px; display: none;">
+		<h4 align="center" id="watershed-name"></h4>
+			<div class="sidebar-wrapper">          
+			
+				<div class="panel panel-default" id="utility_panel">
+					<div id="variableLayers" class="function_panel panel-collapse collapse in"> 
+						
+					</div>
+
+					
+					
+				</div>
+
+
+
+		
+	  
+			  
+			</div>
+	</div>
+	  
+    <!-- /.modal is for plotting time serise data -->
+       <div class="modal fade" id="timeSeriseModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" id="timeSeriseWindow" >
+        <div class="modal-content" id="timeSeriseContent">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-primary" id="timeSerisetitle"></h4>
+          </div>
+          <div class="modal-body" id="timeSerise-info"></div>
+          <div id="loading_screen" ></div>   
+      
+          
+          <div class="modal-footer" style="position:absolute; bottom:0%; width:100%;">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- /.modal is for plotting time serise data -->
+       <div class="modal fade" id="birdeyeModal" tabindex="-1"  role="dialog">
+      <div class="modal-dialog generic_modal_window_style" id="birdeyeWindow" >
+        <div class="modal-content model_content_style" id="birdeyeContent" >
+          <div class="modal-header">
+            <button class="close bing_map_close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-primary" id="birdeyeModal-title"> Culvert Info</h4>
+		
+			
+          </div>
+		  
+          <div class="modal-body model_info_style" id="birdeye-info">
+		  
+		  
+		  
+							<div id="culvert_text_content" align="right">
+								  <label for="data-list">Culvert Information</label>							  
+								   <ul  id="data-list" style="list-style-type:none">
+
+							
+								   
+									</ul> 
+									
+								
+									
+								</div>
+
+								
+								<!--<label for="upload_description">Bird's-eye view:</label>
+													
+								<div id="bingmap_div"  style="position:absolute; height:90%; width:92%; border-style: solid;"></div>	-->	
+								
+								<div id="bingmap_div"   ></div>	
+
+								
+		  
+				<!-- start of form-->
+	
+					  <!-- end of form-->
+	  
+		  
+		  </div>
+          <div id="loading_screen" ></div>   
+         
+
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+          <div class="modal-footer" style="position:absolute; bottom:0%; width:100%;">
+			
+            <button type="button" class="btn btn-default bing_map_close" data-dismiss="modal">Close</button>
+
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+	
+	  
+      <div id="map"></div>
+    </div>
+	<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Welcome Iowa Watersheds DSS - Iowa Culverts!</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="aboutTabs">
+              <li class="active"><a href="about" data-toggle="tab" id="about_tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
+              <li><a href="contact" data-toggle="tab" id="contact_tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
+              <li><a href="disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
+              <li class="dropdown">
+                <a  class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Metadata <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://www.iowadot.gov/index.html#/services" >Iowa Department of Transportation</a></li>
+				  <li><a href="http://www.iihr.uiowa.edu/" >IIHR – Hydroscience & Engineering</a></li>
+                <!--  <li><a href="Multi-Hydraulic-tab" data-toggle="tab">USACE Multiple Hydrologic Parameters Data</a></li>-->
+                  </ul>
+              </li>
+            </ul>
+            <div class="tab-content" id="aboutTabsContent">
+            <div class="tab-pane fade active in" id="about">
+            <p>The Iowa Watersheds DSS platform uses <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>.<!-- Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>-->
+            <div class="panel panel-primary">
+            <div class="panel-heading">Iowa Culverts</div>
+            <ul class="list-group" id="watershed_list">
+			
+				  
+<p>	Culvert design is based on a variety of data sources (time series, statistical analyses, maps, and other site-specific characteristics) that are typically stored in various formats in multiple data provider repositories. In the existing design workflow, culvert information are assembled manually, which is time consuming and inefficient, and post-construction data are not utilized in culvert design due to data Interoperability issues. In addition, sedimentation at multi-barrel culverts has become a widespread problem in the US Midwest as a direct consequence of the changes in land use and climate. Culvert designs are preceded by analyses that take into consideration hydrologic, hydraulic, and geomorphological conditions at the construction site. Less attention is typically given to a thorough assessment of the potential for sedimentation within and in the culvert vicinity. This is unfortunate as both inspection and sediment cleaning at culvert are expensive, labor intensive, in many occasions and sites need to be repeated. </p>
+<p>	The prototype geo-portal “Iowa Culvert” presented in this poster is designed for Iowa Department of Transportation to achieve: i) automated culvert designs and data integration; ii) culvert sediment mitigation design; and, iii) digital culvert inspection and monitoring; The platform is a continuously updated resource on culvert life cycle that plays several roles: a) informs and facilitate the design of other culverts in the area; b) serves as a repository that can be mined to infer aspects of current designs in relationship with the location of the culvert in diverse geographic areas. It integrates: i) watershed characteristics (river network, hydrologic and soil information for the drainage areas, streamflow statistics at gaged and ungagged sites); ii) culvert database for the region; iii) hydraulic model for sizing culverts; iv) monitoring data; and v) pre- and post-construction culvert data . Various means for enabling designers and managing personnel to query and visualize these multiple resources. The platform is built using open source technologies to make the system light-weighted, low cost and flexible. </p>
+<!--
+<p><a href="http://criticalzone.org/iml/infrastructure/field-area/clear-creek-watershed/">IML CZO Site</a></p>
+<img src="http://criticalzone.org/images/made/images/remote/https_criticalzone.org/images/national/photos-and-images/IML/CZOlandscape450_450_308_80auto.jpg">
+-->
+
+            </ul>
+                </div>
+              </div>
+			
+              <div id="disclaimer" class="tab-pane fade text-danger">
+                <p>The data provided on this app is for scientific research and academic purposes only.</p>
+                <!--
+				<p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
+              -->
+			  </div>
+              <div class="tab-pane fade" id="contact">
+              <form id="contact-form">
+                  <div class="well well-sm">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="first-name">First Name:</label>
+                          <input type="text" class="form-control" id="first-name">
+                        </div>
+                        <div class="form-group">
+                          <label for="last-name">Last Name:</label>
+                          <input type="text" class="form-control" id="last-email">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email:</label>
+                          <input type="text" class="form-control" id="email">
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" rows="8" id="message"></textarea>
+                      </div>
+                      <div class="col-md-12">
+                        <p>
+                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                
+              </div>
+              <div class="tab-pane fade" id="BridgeSensor-tab">
+                <p></p>
+              </div>
+              <div class="tab-pane fade" id="Streamflow-tab">
+                <p></p>
+              </div>
+              <div class="tab-pane fade" id="Precipitation-tab">
+                <p></p>
+              </div>
+			  <!--
+              <div class="tab-pane fade" id="WaterQuality-tab">
+                <p></p>
+              </div>
+    <div class="tab-pane fade" id="Multi-Hydraulic-tab">
+                <p></p>
+              </div>
+    <div class="tab-pane fade" id="Nitrate-tab">
+                <p></p>
+              </div>-->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+	
+	
+
+	
+	
+	
+
+
+
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+	<script src="assets/js/functionality/ifis_watershed.js"></script>
+    <script src="assets/js/map_setup.js"></script>
+	
+    <script type="text/javascript" src="assets/js/dss_app/iowa_culvert/Brideye/GeoJSONModule.js"></script>  
+	<script src="assets/js/dss_app/iowa_culvert/Brideye/bingmap_setup.js"></script>
+	
+	<script src="assets/js/utility/spin.min.js"></script>
+	<script src="assets/js/functionality/data_domain.js"></script>
+	<!--
+	<script src="assets/js/functionality/data_domain.js"></script>
+	<script src="assets/js/functionality/current_status_live_data.js"></script>
+	-->
+
+
+
+</body>
+</html>

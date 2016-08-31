@@ -1,0 +1,123 @@
+
+26 x 26
+.geocoder-control-input {
+    background-color: #fff;
+    background-image: url("img/search.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 26px auto;
+    border: 0 none;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 13px;
+    height: auto;
+    left: 0;
+    line-height: normal;
+    padding: 5px 0;
+    position: absolute;
+    text-indent: 6px;
+    top: 0;
+    width: 100%;
+}
+.geocoder-control {
+    height: 26px;
+    transition: width 0.175s ease-in 0s;
+    width: 26px;
+}
+.geocoder-control-expanded, .leaflet-touch .geocoder-control-expanded {
+    width: 275px;
+}
+.geocoder-control-input.geocoder-control-loading {
+    background-image: url("img/loading.gif");
+    background-size: 26px auto;
+}
+@media only screen and (min--moz-device-pixel-ratio: 2), not all, not all, not all {
+.geocoder-control-input {
+    background-image: url("img/search@2x.png");
+}
+.geocoder-control-input.geocoder-control-loading {
+    background-image: url("img/loading@2x.gif");
+}
+}
+.geocoder-control-input:focus {
+    cursor: text;
+    outline: 0 none;
+}
+.geocoder-control-suggestions {
+    display: none;
+    left: 0;
+    margin-top: 10px;
+    overflow: auto;
+    position: absolute;
+    top: 26px;
+    width: 100%;
+}
+.geocoder-control-list + .geocoder-control-header {
+    border-top: 1px solid #d5d5d5;
+}
+.geocoder-control-header {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border-bottom: 1px solid #d5d5d5;
+    color: #444;
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 0.5em;
+    text-transform: uppercase;
+}
+.geocoder-control-list {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+.geocoder-control-suggestions .geocoder-control-suggestion {
+    background: #fff none repeat scroll 0 0;
+    border-top: 1px solid #f1f1f1;
+    cursor: pointer;
+    font-size: 13px;
+    overflow: hidden;
+    padding: 7px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.geocoder-control-suggestions .geocoder-control-suggestion:first-child {
+    border: 0 none;
+}
+.geocoder-control-suggestions .geocoder-control-suggestion.geocoder-control-selected, .geocoder-control-suggestions .geocoder-control-suggestion:hover {
+    background: #7fdfff none repeat scroll 0 0;
+    border-color: #7fdfff;
+}
+.leaflet-right .geocoder-control-suggestions {
+    left: auto;
+    right: 0;
+}
+.leaflet-right .geocoder-control-input {
+    left: auto;
+    right: 0;
+}
+.leaflet-touch .geocoder-control {
+    height: 30px;
+    width: 30px;
+}
+.leaflet-touch .geocoder-control.geocoder-control-expanded {
+    width: 275px;
+}
+.leaflet-touch .geocoder-control-input {
+    background-size: 30px auto;
+    height: 30px;
+    line-height: 30px;
+}
+.leaflet-touch .geocoder-control-suggestions {
+    top: 30px;
+}
+.leaflet-oldie .geocoder-control-input {
+    height: 28px;
+    width: 28px;
+}
+.leaflet-oldie .geocoder-control-expanded .geocoder-control-input {
+    width: auto;
+}
+.leaflet-oldie .geocoder-control-input, .leaflet-oldie .geocoder-control-suggestions {
+    border: 1px solid #999;
+}

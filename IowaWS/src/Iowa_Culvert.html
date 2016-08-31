@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Iowa Watershed DSS</title>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="assets/css/bootstrap-switch.css">
+	 <link rel="stylesheet" href="assets/css/app.css">
+<!-- Bootstrap CSS -->
+
+<!-- Jquery UI CSS -->
+<link rel="stylesheet" href="assets/js/utility/jquery-slider/iThing.css">
+<!-- Jquery UI CSS -->
+
+<!-- Leaflet CSS -->
+ <link rel="stylesheet" href="assets/css/leaflet.css" />
+<!--<link rel="stylesheet" href="assets/css/leaflet_google.css" />
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />-->
+  <link rel="stylesheet" href="assets/css/bootstrap_elements.css" />  
+<!-- Leaflet CSS -->
+
+<!-- Font CSS -->
+<link href='http://fonts.googleapis.com/css?family=Krona+One' rel='stylesheet' type='text/css'> 
+<!-- Font CSS -->
+
+<!-- JQuery JS -->
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- JQuery JS -->
+
+
+
+<!-- Leaflet JS -->
+<script src="assets/js/Proj4Leaflet_min.js"></script>
+<script src="assets/js/utility/leaflet_generic.js"></script>
+<!-- Leaflet JS -->
+
+<!-- Leaflet ext JS -->
+<script src="assets/js/leaflet_extension/leaflet_google.js"> </script>
+<script src="assets/js/leaflet_extension/leaflet_kml.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>    
+<script src="assets/js/leaflet_esri.js"></script>
+<!-- Leaflet ext JS -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script> 
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script> 
+
+
+<!--
+<script src="assets/js/utility/plotting.js"></script>
+<script src="assets/js/utility/jquery-slider/jQAllRangeSliders-min.js"></script> 
+<script src="assets/js/utility/jquery-slider/jQDateRangeSlider-withRuler-min.js"></script> 
+<script src="assets/js/utility/spin.min.js"></script> 
+<script src="assets/js/utility/simple_statics.js"></script>
+-->
+  <style>
+    .navbar-inverse { background-color: #000066; }
+  </style>  
+  <link rel="stylesheet" href="assets/css/main_page.css" />
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header" id="nav_bar">
+        <div class="navbar-icon-container">
+          <a  class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+          <a  class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+        </div>
+        <a class="navbar-brand">Iowa Watersheds DSS <!--IClear Creek WMA--> </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <!--form class="navbar-form navbar-right" role="search">
+          <div class="form-group has-feedback navbar-right">
+              <input id="searchbox" type="text" placeholder="Search" class="form-control">
+              <span id="searchicon" class="fa fa-search form-control-feedback"></span>
+          </div> 
+        </form>-->
+		
+		
+        <ul class="nav navbar-nav" name="title_bar_options"> <!-- templete for title bars -->
+		<!--
+          <li class="dropdown"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in dropdown" id="about-btn" style="font-weight: bold;"><i class="fa fa-info-circle"></i></i>&nbsp;&nbsp;The Watershed</a>
+			  </li>
+			  -->
+		<li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"  id="about-btn" style="font-weight: bold;"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;The Watershed <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn3"><i></i>&nbsp;&nbsp;No Data</a></li>
+              </ul>
+          </li>
+		<li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tasks"></i></i>&nbsp;&nbsp;Planning <b class="caret"></b></a>
+              <ul class="dropdown-menu planning_tab">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" class="planning_no_data_btn"><i></i>&nbsp;&nbsp;No Data</a></li>
+			  
+              </ul>
+          </li>          
+          <li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Current Status <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="current-status-list-btn" class="sidebar-control"><i></i>&nbsp;&nbsp;Active Data Layers</a></li>
+              </ul>
+          </li>
+          <li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Forecast <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn2"><i></i>&nbsp;&nbsp;No Data</a></li>
+              </ul>
+          </li>
+          <li class="dropdown">
+            <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i>&nbsp;&nbsp;Generic Questions <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn3"><i></i>&nbsp;&nbsp;No Data</a></li>
+              </ul>
+          </li>
+          <!--<li><a href="#" data-toggle="collapse" style="font-weight: bold;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+         -->
+		 </ul>
+		 <ul class="nav navbar-nav navbar-right">
+		 <li><a href="../" style="font-weight: bold; border:2px solid; font-weight: bold; margin: 10px 1px; border: 2px solid ; padding: 5px 15px; border-color:#29AEE3;">&nbsp;&nbsp;Home</a></li>
+          <li><a href="#" data-toggle="collapse" style="font-weight: bold; border:2px solid; font-weight: bold; margin: 10px 1px; border: 2px solid ; padding: 5px 15px; border-color:#29AEE3;">&nbsp;&nbsp;About</a></li>
+          <li><a href="#" data-toggle="collapse" style="font-weight: bold; border:2px solid; font-weight: bold; margin: 10px 25px 10px 1px; border: 2px solid ; padding: 5px 15px; border-color:#29AEE3;">&nbsp;&nbsp;Contact</a></li>
+        </ul> <!--Title bar option--><!-- templete for title bars -->
+        
+		
+      </div><!--/.navbar-collapse -->
+      
+    </div><!-- Nevagation bar -->
+	
+	<div id="container">
+	
+<div id="sidebar" style="position:relative;top:10px; display: none;">
+          <h4 align="center" id="watershed-name"><b>Iowa Watershed</b></h4>
+		<div class="sidebar-wrapper">          
+        
+<div class="panel panel-default" id="utility_panel">
+    <div id="variableLayers" class="function_panel panel-collapse collapse in"> 
+        
+    </div>
+
+</div>
+
+
+
+
+	
+	
+	
+	
+	
+  
+          
+        </div>
+      </div>
+	  
+    <!-- /.modal is for plotting time serise data -->
+       <div class="modal fade" id="timeSeriseModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" id="timeSeriseWindow" >
+        <div class="modal-content" id="timeSeriseContent">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-primary" id="timeSerisetitle"></h4>
+          </div>
+          <div class="modal-body" id="timeSerise-info"></div>
+          <div id="loading_screen" ></div>   
+      
+          
+          <div class="modal-footer" style="position:absolute; bottom:0%; width:100%;">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+	
+	  
+      <div id="map"></div>
+    </div>
+	<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Welcome Iowa Watersheds DSS!</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="aboutTabs">
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
+              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
+              <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Metadata <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://iowafloodcenter.org/projects/stream-stage-sensor/river-stage-sensors" >IFC Bridge Sensors Data</a></li>
+                  <li><a href="http://water.usgs.gov/nsip/" >USGS Stream Flow Data</a></li>
+                  <li><a href="http://iowafloodcenter.org/projects/stream-stage-sensor/river-stage-sensors" >Tipping Buckets Precipitation Data</a></li>
+                  <li><a href="http://water.epa.gov/scitech/swguidance/standards" >Water Quality Data</a></li> 
+                <!--  <li><a href="#Multi-Hydraulic-tab" data-toggle="tab">USACE Multiple Hydrologic Parameters Data</a></li>-->
+                  <li><a href="#Nitrate-tab" data-toggle="tab">IIHR Nutrient Sensor</a></li>
+
+                </ul>
+              </li>
+            </ul>
+            <div class="tab-content" id="aboutTabsContent">
+            <div class="tab-pane fade active in" id="about">
+            <p>The Iowa Watersheds DSS platform uses <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>.<!-- Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>-->
+            <div class="panel panel-primary">
+            <div class="panel-heading">Watershed</div>
+            <ul class="list-group" id="watershed_list">
+			
+				  <!--
+<p>Intensively managed landscapes, regions of significant land use change, serve as sources of economic prosperity. However, the intensity of land use change is responsible for unintended deterioration of our land and water environments. The Intensively Managed Landscapes-Critical Zone Observatory (IML-CZO) aims to understand the present-day dynamics of this change in the context of long-term natural coevolution of the landscape, soil, and biota. The CZO will enable us to assess the short- and long-term resilience of the crucial ecological, hydrological, and climatic ?services? provided by the Critical Zone, the ?skin? of the earth that extends from the treetops to the bedrock. An observational network of three sites in Illinois, Iowa, and Minnesota that capture the geological diversity of the low-relief, glaciated, and tile-drained landscape will allow for novel scientific and technological advances in understanding the Critical Zone. The IML-CZO will also provide leadership in developing the next generation of scientists and practitioners and in advancing management strategies aimed at reducing the vulnerability of the system to present and emerging trends in human activities.</p>
+<p>The Clear Creek, Iowa, watershed covers approximately 270 km2 in East Central Iowa and joins the Iowa River in Coralville, Iowa. Clear Creek is representative of most U.S. Midwestern watersheds with regards to land use (predominantly agricultural), soil type/order (Alfisols and Mollisols), and climate (humid-continental). The combination of extensive agricultural activities, increased urbanization, highly erodible soils, and a humid climate on the steep slopes within the watershed have influenced the erosion processes in the watershed. </p>
+
+<p><a href="http://criticalzone.org/iml/infrastructure/field-area/clear-creek-watershed/">IML CZO Site</a></p>
+<img src="http://criticalzone.org/images/made/images/remote/https_criticalzone.org/images/national/photos-and-images/IML/CZOlandscape450_450_308_80auto.jpg">
+-->
+
+            </ul>
+                </div>
+              </div>
+			
+              <div id="disclaimer" class="tab-pane fade text-danger">
+                <p>The data provided on this app is for scientific research and academic purposes only.</p>
+                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
+              </div>
+              <div class="tab-pane fade" id="contact">
+              <form id="contact-form">
+                  <div class="well well-sm">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="first-name">First Name:</label>
+                          <input type="text" class="form-control" id="first-name">
+                        </div>
+                        <div class="form-group">
+                          <label for="last-name">Last Name:</label>
+                          <input type="text" class="form-control" id="last-email">
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Email:</label>
+                          <input type="text" class="form-control" id="email">
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" rows="8" id="message"></textarea>
+                      </div>
+                      <div class="col-md-12">
+                        <p>
+                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                
+              </div>
+              <div class="tab-pane fade" id="BridgeSensor-tab">
+                <p></p>
+              </div>
+              <div class="tab-pane fade" id="Streamflow-tab">
+                <p></p>
+              </div>
+              <div class="tab-pane fade" id="Precipitation-tab">
+                <p></p>
+              </div>
+			  <!--
+              <div class="tab-pane fade" id="WaterQuality-tab">
+                <p></p>
+              </div>
+    <div class="tab-pane fade" id="Multi-Hydraulic-tab">
+                <p></p>
+              </div>
+    <div class="tab-pane fade" id="Nitrate-tab">
+                <p></p>
+              </div>-->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+	
+	
+
+	
+	
+	
+
+
+
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+<script src="assets/js/map_setup.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3395" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "Name": "UserPoint238_x", "Name_1": "Point 1", "index": 1 }, "geometry": { "type": "Point", "coordinates": [ -92.703220705569109, 40.891900738642541 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J4853", "Name_1": "Point 2", "index": 2 }, "geometry": { "type": "Point", "coordinates": [ -92.622621118116029, 40.859674848061289 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5489", "Name_1": "Point 5", "index": 5 }, "geometry": { "type": "Point", "coordinates": [ -92.464870186921814, 40.875685499396354 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5598", "Name_1": "Outlet", "index": 8 }, "geometry": { "type": "Point", "coordinates": [ -92.245484839216573, 40.895141467029745 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5045", "Name_1": "Point 3", "index": 3 }, "geometry": { "type": "Point", "coordinates": [ -92.611469797512967, 40.838901712822029 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5371", "Name_1": "Point 4", "index": 4 }, "geometry": { "type": "Point", "coordinates": [ -92.518575512180959, 40.852598364929349 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5589", "Name_1": "Point 7", "index": 7 }, "geometry": { "type": "Point", "coordinates": [ -92.312447789771184, 40.892022953614592 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Name": "J5475", "Name_1": "Point 6", "index": 6 }, "geometry": { "type": "Point", "coordinates": [ -92.378086603660648, 40.872325476261928 ] } }
+]
+}

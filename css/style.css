@@ -1,0 +1,110 @@
+.wellbg {
+    background: #3660AC; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#3660AC, #273890); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#3660AC, #273890); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#3660AC, #273890); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#3660AC, #273890); /* Standard syntax (must be last) */
+}
+
+.thumbnail_tile_inner {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 15px 0px;
+    text-align: center;
+}
+
+.thumbnail_tile_inner:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thumbnail_tile_inner > h2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.thumbnail_tile_inner > p {
+    font-size: 14px;
+}
+
+.thumbnail_tile_inner > button, .thumbnail_tile_inner > a {
+    background-color: #266DD7;
+    width: 100%;
+    margin: 5px 0px;
+    padding: 5px;
+}
+
+.thumbnail_tile_inner > button:hover, .thumbnail_tile_inner > a:hover {
+    background-color: rgb(91, 172, 238);
+    border-color: rgb(91, 172, 238);
+}
+
+.description {
+    background-color: white;
+    color: gray;
+    font-weight: 500;
+    font-size: larger;
+    padding: 30px;
+}
+
+.thumbnail_tile_about {
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+    padding: 15px 75px 25px 75px;
+    margin: 15px 0px;
+    text-align: justify;
+    box-shadow: 4px 4px 40px 4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: 4px #266DD7 solid;
+}
+
+.thumbnail_tile_about > h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.thumbnail_tile_about > p {
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #6F6F6F;
+}
+
+.thumbnail_tile_about > hr {
+    text-align: center;
+    width: 400px;
+    border-color: black
+}
+
+#img1 {
+    float: right;
+    padding: 0px 0px 0px 15px;
+}
+
+#img2 {
+    float: left;
+    padding: 0px 15px 0px 0px;
+}
+
+.iihr-bg {
+    height: 420px;
+    background: transparent url("../img/iihr-lab.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.contact-form-container {
+    background-color: #f4f4f4;
+    margin-top: 20px;
+    opacity: 0.90;
+    height: 380px;
+}
+
+.contact-details {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.disclaimer-div {
+    text-align: right;
+    font-size: x-small;
+    color: gray;
+}

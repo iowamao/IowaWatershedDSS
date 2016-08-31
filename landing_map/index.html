@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Iowa Watershed Map</title>
+ <link rel="stylesheet" href="css/main_page.css" />
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/geosearch.css" />
+<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>-->
+
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+
+
+<script src="js/leaflet_extension/Proj4Leaflet_min.js"></script>
+<script src="js/leaflet_extension/leaflet_esri.js"></script>
+<script src="js/leaflet_extension/KML.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>  
+
+<script src="js/spin.min.js"></script>   
+<script src="js/leaflet_extension/chroma.js"></script>    
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+
+<link rel="stylesheet" href="css/leaflet_esri_geocoder.css">
+
+<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>  
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script> 
+<script src="js/leaflet_extension/leaflet_google.js"> </script>
+ <link rel="stylesheet" href="css/leaflet_google.css" />
+
+<!--
+  <script src='http://maps.google.com/maps/api/js?sensor=false&amp;v=3.2'>  </script>   
+<script src="js/geosearch.js"></script>  
+<script src="js/geosearch_google.js"></script>  
+
+
+
+
+<script src="js/esri-geocoding.js"></script>
+<script src="//cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.2/esri-leaflet-geocoder.css">
+<script src="//cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.2/esri-leaflet-geocoder.js"></script>
+-->
+<script src="js/watershed.js"></script>  
+<script src="js/Utility/watershed_project.js"></script>
+<script src="js/Utility/landing_map_utilities.js"></script>
+</head>
+
+
+
+<body>
+
+<div id="map"></div>
+<div id="title_bar"
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >Search by point of interest (POI):</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav titlebar">
+       
+        <li><a >  
+  <select  id="search_standard">
+    <option value="null">Specify...</option>
+  <option value="state">State of Iowa</option>
+  <option value="huc8">HUC8 watershed</option>
+  <option value="huc12">HUC12 watershed</option>
+  <option value="county">County</option>
+   <option value="city">Cities and townships</option>
+  <option value="poi">Place of interest</option>
+    <option value="project">Specific projects</option>
+  </select></a></li>
+  <!--
+   <li><a > 
+    <button type="button" id="insert">Trace&Insert </button> 
+   </li>
+       -->
+      </ul>
+    </div>
+  </div>
+  </div>
+</nav>
+
+
+<script src="js/map_setup.js"></script>
+</body>
+</html>

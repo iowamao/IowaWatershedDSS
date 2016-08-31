@@ -1,0 +1,20 @@
+.nav-tabs > li > a{
+    background-color: #5C91E1 !important;
+    color:#fff;
+    border-radius: 10px 10px 0 0;
+    padding: 5px 5px;
+    width: 283px;
+    text-align: center;
+    font-size: 13px;
+}
+.nav-tabs > li > a:hover{
+    background-color: #4c81e1 !important;
+    color:#fff;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover{
+    background-color: #266DD7 !important;
+    color:#fff;
+    font-weight: 600;
+}

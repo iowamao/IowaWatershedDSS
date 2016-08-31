@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Culvert Photogrammetry</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				font-size:10 px;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			.font_style{
+			font-family: Monospace;
+				font-size:10 px;
+			}
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+			}
+			#water_elevation_form{								
+			position:absolute;
+			top:-13px;
+			left:2%;
+						
+			}
+			#drought{								
+			position:absolute;
+			top:30px;
+			left:2%;
+						
+			}
+			
+			#Loading_progress{ position:absolute;
+			bottom:10px;
+			left:10px;  }
+			
+			#plot{								
+			position:absolute;
+			bottom:10px;
+			left:5px;
+			height:500px;
+			width:400px;
+						
+			}
+			#info a, .button { color: #f00; font-weight: bold; text-decoration: underline; cursor: pointer }
+		</style>
+		<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+		
+	</head>
+
+	<body>
+		<div id="Loading_progress" class="font_style">Loading progress:<progress id="progress_bar" value="0" max="100"></div>
+		<form id="water_elevation_form">
+		<p id="TS_depth" class="font_style">Hover on graph above to set animation</p>
+		
+		<button type="button" id="drought" class="font_style">Reset animation</button>
+		 <!--<p style="position:relative; top:10px;">Water Depth Control:</p>
+         <input type="range" name="points" id="water_elevation" min="5.1" max="6.5" step="0.01" value="5.5" style="position:relative; top:10px;">-->
+        </form>
+		
+		
+		
+		
+
+		<script src="../build/three.min.js"></script>
+		<script src="../build/OrbitControls.js"></script>
+
+		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJMTLLoader.js"></script>
+
+		<script src="js/Detector.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+		
+		
+		
+		
+		
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/data.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+		<!-- Additional files for the Highslide popup effect -->
+		<script src="http://www.highcharts.com/joomla/media/com_demo/js/highslide-full.min.js"></script>
+		<script src="http://www.highcharts.com/joomla/media/com_demo/js/highslide.config.js" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="http://www.highcharts.com/joomla/media/com_demo/highslide.css" />
+	
+
+		<script>
+
+			var container, stats;
+
+			var camera, scene, renderer;
+			
+			var culvert_model; //universal culvert model
+			var water_model; //universal water model
+
+			var mouseX = 0, mouseY = 0;
+
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+			
+			var testing_variable_3js2="asdsdfa";
+			
+function change_water_elevation(water_elevation){
+
+if(typeof water_elevation != 'undefined'){
+
+var previous_location=water_model.position.y;
+
+var new_elevation=5.1+(water_elevation/12*(6.5-5.1));
+$("#TS_depth").html("<b>Time serise depth:</b> "+water_elevation.toFixed(2)+" ft.");
+console.log(water_elevation+"          "+new_elevation);
+water_model.translateY( new_elevation-previous_location );
+
+}
+
+$("#drought").click(function(){	
+					var previous_location=water_model.position.y;
+					$("#TS_depth").html("Time serise depth: "+0+" ft.");
+					water_model.translateY( 5.08-previous_location );
+					})
+
+
+
+					/*var previous_location=water_model.position.y;
+					console.log( $("#water_elevation").val());
+					water_model.translateY( $("#water_elevation").val()-previous_location );*/
+					
+}
+
+			init();
+			animate();
+
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				//camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 2000 );
+				camera.position.x = 0;
+				camera.position.y = 0;
+				camera.position.z = 6;
+
+				// scene
+
+				scene = new THREE.Scene();
+
+				var ambient = new THREE.AmbientLight( 0x444444 );
+				ambient.intensity =0.05;
+				scene.add( ambient );
+				
+				
+
+				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight.position.set( 150, 250, -155 ).normalize();
+				//directionalLight.intensity = 1;
+				directionalLight.intensity = 1.5;
+				scene.add( directionalLight );
+				
+				var directionalLight2 = new THREE.DirectionalLight( 0xffeedd );
+				directionalLight2.position.set( 0, 0, 20 ).normalize();
+				//directionalLight.intensity = 1;
+				directionalLight2.intensity = 0.2;
+				scene.add( directionalLight2 );
+
+				// model
+
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						//console.log( Math.round(percentComplete, 2) + '% downloaded' );
+						$("#progress_bar").val(Math.round(percentComplete, 2));
+						//$("#progress_bar").val(55);
+					$( document ).ajaxStop(function() {
+					//$("#progress_div").remove();
+					});
+					}
+				};
+				
+
+				var onError = function ( xhr ) {
+				};
+
+
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+				var loader = new THREE.OBJMTLLoader();
+				loader.load( 'obj/culvert/culvert.obj', 'obj/culvert/culvert.mtl', function ( object ) {
+
+				culvert_model=object;
+					culvert_model.position.x = 0;
+					culvert_model.position.y = 5;
+					culvert_model.position.z = -5;
+					scene.add( culvert_model );
+					$("#Loading_progress").remove();
+					//console.log("culvert model added");
+
+				}, onProgress, onError );
+
+				//
+				var loader2 = new THREE.OBJMTLLoader();
+				loader2.load( 'obj/culvert/water.obj', 'obj/culvert/water.mtl', function ( object ) {
+                    water_model=object;
+					water_model.position.x = 0;
+					water_model.position.y = 5.1;
+					water_model.position.z = -5;
+					scene.add( object );
+					$("#water_elevation").val(water_model.position.y);
+					
+					$("#water_elevation").change(function(){	
+					var previous_location=water_model.position.y;
+					console.log( $("#water_elevation").val());
+					water_model.translateY( $("#water_elevation").val()-previous_location );
+					})
+					
+					
+
+				}, onProgress, onError );
+			
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+				//document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+               
+ 
+			}
+
+			function onWindowResize() {
+/*
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+*/
+var WIDTH = window.innerWidth,
+            HEIGHT = window.innerHeight;
+        renderer.setSize(WIDTH, HEIGHT);
+        camera.aspect = WIDTH / HEIGHT;
+        camera.updateProjectionMatrix();
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = 0.1*( event.clientX - windowHalfX ) / 2;
+				mouseY = 0.03*Math.abs(( event.clientY - windowHalfY ) / 2)*(-1);
+
+			}
+
+			//
+
+			function animate() {
+/*
+				requestAnimationFrame( animate );
+				render();
+				*/
+				
+				// Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+      requestAnimationFrame(animate);
+      
+      // Render the scene.
+      renderer.render(scene, camera);
+      controls.update();
+
+			}
+
+			function render() {
+
+			
+				camera.position.x += ( mouseX - camera.position.x ) * .03;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+
+				camera.lookAt( culvert_model.position );
+
+				renderer.render( scene, camera );
+                renderer.setClearColor( 0x333333 );
+			}
+
+		</script>
+		
+<!--<script src="../highchart_plot/HC_plot.js"></script>-->
+	</body>
+</html>
